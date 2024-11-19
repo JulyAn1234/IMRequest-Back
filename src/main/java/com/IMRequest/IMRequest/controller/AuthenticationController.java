@@ -27,6 +27,13 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+    @GetMapping("/getUser/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+        Optional<UserResponse> user = authenticationService.getUserByUsername(username);
+        return user.map(ResponseEntity::ok) // Return the user
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build()); // Handle user not found
+    }
+
     @GetMapping("/getAllUsers")
     public ResponseEntity<?> getAllUsers() {
         List<UserResponse> userList = authenticationService.getAllUsers();
@@ -43,6 +50,7 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<LoginResponse> register(@RequestBody RegisterUserDto registerUserDto) {
+        System.out.println(registerUserDto);
         try {
             User registeredUser = authenticationService.signup(registerUserDto);
 
@@ -62,17 +70,33 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        User authenticatedUser = authenticationService.authenticate(loginUserDto);
+        System.out.println(loginUserDto);
+        try {
+            User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
-        return ResponseEntity.ok(generateLoginResponse(authenticatedUser));
+            return ResponseEntity.ok(generateLoginResponse(authenticatedUser));
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 
     private LoginResponse generateLoginResponse(User authenticatedUser){
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
         return LoginResponse.builder()
-                .token(jwtToken)
-                .expiresIn(jwtService.getExpirationTime())
+                .Token(jwtToken)
+                .ExpiresIn(jwtService.getExpirationTime())
+                .User(UserResponse.builder()
+                        .Username(authenticatedUser.getUsername())
+                        .Name(authenticatedUser.getName())
+                        .Rol(authenticatedUser.getRol())
+                        .Unidad(authenticatedUser.getUnidad())
+                        .isActive(authenticatedUser.isActive())
+                        .Permissions(authenticatedUser.getPermissions())
+                        .build())
                 .build();
     }
 

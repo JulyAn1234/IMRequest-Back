@@ -31,7 +31,7 @@ public class User implements UserDetails{
     private boolean isActive;
     private int rol;
     private int unidad;
-
+    private List<Integer> permissions;
     //Add roles if necessary
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

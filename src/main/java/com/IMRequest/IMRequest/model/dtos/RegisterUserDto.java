@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 
+import java.util.List;
+
 @Data
 public class RegisterUserDto {
 
@@ -22,6 +24,9 @@ public class RegisterUserDto {
 
     @JsonProperty("Rol")
     private int rol;
+
+    @JsonProperty("Permissions")
+    private List<Integer> permissions;
 
     private boolean isActive;
 

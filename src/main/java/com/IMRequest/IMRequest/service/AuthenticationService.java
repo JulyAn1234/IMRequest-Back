@@ -54,6 +54,7 @@ public class AuthenticationService {
                 .rol(input.getRol())
                 .unidad(input.getUnidad())
                 .isActive(input.isActive())
+                .permissions(input.getPermissions())
                 .build();
 
         return userRepository.save(user);
@@ -66,6 +67,7 @@ public class AuthenticationService {
             user.setRol(updatedUser.getRol());
             user.setUnidad(updatedUser.getUnidad());
             user.setActive(updatedUser.isActive());
+            user.setPermissions(updatedUser.getPermissions());
             return userRepository.save(user);
         });
 
@@ -83,6 +85,7 @@ public class AuthenticationService {
         );
 
         Optional<User> userop=  userRepository.getUserByUsername(input.getUsername());
+
         return userop.orElseThrow();
     }
 
@@ -90,5 +93,9 @@ public class AuthenticationService {
         return userRepository.findAll().stream()
                 .map(UserResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<UserResponse> getUserByUsername(String username) {
+        return userRepository.getUserByUsername(username).map(UserResponse::new);
     }
 }

@@ -20,5 +20,6 @@ public class Warehouse {
     private String name;
     private boolean isActive;
 
+    @JsonProperty("Unidad")
     private int unidad;
 }

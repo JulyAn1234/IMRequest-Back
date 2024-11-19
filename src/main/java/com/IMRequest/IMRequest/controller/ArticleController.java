@@ -22,6 +22,18 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+    @GetMapping("/getArticle/{id}")
+    public ResponseEntity<?> getArticle(@PathVariable String id) {
+        try{
+            Optional<Article> article = articleService.getArticleById(id);
+            return article.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        }catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @GetMapping("/getAllArticles")
     public ResponseEntity<?> getAllArticles() {
         try{

@@ -36,6 +36,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/article/**").permitAll()
+                        .requestMatchers("/warehouse/**").permitAll()
+                        .requestMatchers("/inventory/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

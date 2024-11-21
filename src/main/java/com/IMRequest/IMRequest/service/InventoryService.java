@@ -1,6 +1,4 @@
 package com.IMRequest.IMRequest.service;
-
-
 import com.IMRequest.IMRequest.Exceptions.EntityNotFoundException;
 import com.IMRequest.IMRequest.model.entities.Article;
 import com.IMRequest.IMRequest.model.entities.Inventory;

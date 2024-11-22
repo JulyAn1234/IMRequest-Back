@@ -99,4 +99,17 @@ public class InventoryController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    // 7. Get all aggregated inventories for all articles in a given warehouse
+    @GetMapping("/getAggregatedInventoryByWarehouse/{warehouseId}")
+    public ResponseEntity<?> getAggregatedInventoryByWarehouse(@PathVariable String warehouseId) {
+        try {
+            List<AggregatedInventory> aggregatedInventories = inventoryService.getAggregatedInventoryByWarehouse(warehouseId);
+            return aggregatedInventories.isEmpty() ? ResponseEntity.status(HttpStatus.NOT_FOUND).body("No aggregated inventory found")
+                    : ResponseEntity.ok(aggregatedInventories);
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

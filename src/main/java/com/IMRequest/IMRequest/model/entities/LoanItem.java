@@ -12,5 +12,6 @@ public class LoanItem {
     @JsonProperty("quantity")
     int quantity;
 
+    @JsonProperty("isActive")
     boolean isActive;
 }

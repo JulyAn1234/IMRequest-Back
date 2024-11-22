@@ -34,5 +34,6 @@ public class Loan {
     @JsonProperty("Items")
     List<LoanItem> items;
 
+    @JsonProperty("isActive")
     boolean isActive;
 }

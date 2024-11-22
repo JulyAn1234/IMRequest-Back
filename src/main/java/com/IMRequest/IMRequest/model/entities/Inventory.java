@@ -23,11 +23,9 @@ public class Inventory {
     @Id
     private String id;
 
-    @DBRef
     @JsonProperty("ArticleId")
     private String articleId;
 
-    @DBRef
     @JsonProperty("WarehouseId")
     private String warehouseId;
     @JsonProperty("Stock")

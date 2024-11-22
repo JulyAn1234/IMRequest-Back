@@ -132,4 +132,28 @@ public class InventoryService {
 
         return enrichedInventories;
     }
+
+    // 8. Get all inventories for a given warehouse, return aggregated stock for each article
+    public List<AggregatedInventory> getAggregatedInventoryByWarehouse(String warehouseId) {
+        // Get all articles that are active
+        List<Article> activeArticles = articleRepository.findAll().stream()
+                .filter(Article::isActive)
+                .collect(Collectors.toList());
+
+        // Aggregate total stock for each active article in the specified warehouse
+        List<AggregatedInventory> aggregatedInventories = new ArrayList<>();
+        for (Article article : activeArticles) {
+            Optional<Inventory> inventory = inventoryRepository.findByArticleIdAndWarehouseId(article.getId(), warehouseId);
+            inventory.ifPresent(value -> {
+                AggregatedInventory aggregatedInventory = AggregatedInventory.builder()
+                        .article(article)
+                        .totalStock(value.getStock())
+                        .build();
+                aggregatedInventories.add(aggregatedInventory);
+            });
+        }
+
+        // Return the aggregated inventories for all active articles in the given warehouse
+        return aggregatedInventories;
+    }
 }

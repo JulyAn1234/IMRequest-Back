@@ -28,6 +28,7 @@ public class User implements UserDetails{
     @JsonIgnore
     private String password;
     private String name;
+    @JsonProperty("isActive")
     private boolean isActive;
     private int rol;
     private int unidad;

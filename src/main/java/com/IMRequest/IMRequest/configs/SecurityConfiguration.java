@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/article/**").permitAll()
                         .requestMatchers("/warehouse/**").permitAll()
                         .requestMatchers("/inventory/**").permitAll()
+                        .requestMatchers("/loans/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

@@ -59,8 +59,8 @@ public class LoanService {
         for (LoanItem item : loan.getItems()) {
             if (articleIds.contains(item.getArticleId()) && item.isActive()) {
                 item.setActive(false);
-                // Update inventory (subtract quantities)
-                updateInventoryForLoanItem(item, loan.getWarehouseId(), -item.getQuantity());
+                // Update inventory (sum quantities again)
+                updateInventoryForLoanItem(item, loan.getWarehouseId(), item.getQuantity());
             }
         }
         // Save the loan with updated items

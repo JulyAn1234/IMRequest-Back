@@ -18,6 +18,7 @@ public class Warehouse {
     private String id;
     @JsonProperty("Name")
     private String name;
+    @JsonProperty("isActive")
     private boolean isActive;
 
     @JsonProperty("Unidad")

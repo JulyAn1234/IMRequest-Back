@@ -13,5 +13,6 @@ public class EnrichedLoanItem {
     @JsonProperty("quantity")
     int quantity;
 
+    @JsonProperty("isActive")
     boolean isActive;
 }

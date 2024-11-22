@@ -35,6 +35,7 @@ public class EnrichedLoan {
     @JsonProperty("Items")
     List<EnrichedLoanItem> items;
 
+    @JsonProperty("isActive")
     boolean isActive;
 }
 

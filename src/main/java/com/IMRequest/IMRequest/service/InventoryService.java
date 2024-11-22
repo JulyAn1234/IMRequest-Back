@@ -148,6 +148,7 @@ public class InventoryService {
                 AggregatedInventory aggregatedInventory = AggregatedInventory.builder()
                         .article(article)
                         .totalStock(value.getStock())
+                        .Quantity(0)
                         .build();
                 aggregatedInventories.add(aggregatedInventory);
             });

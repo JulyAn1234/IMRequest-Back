@@ -10,4 +10,5 @@ import lombok.Data;
 public class AggregatedInventory {
     Article article;
     int totalStock;
+    int Quantity;
 }

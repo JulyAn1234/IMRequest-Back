@@ -73,13 +73,11 @@ public class InventoryService {
         List<AggregatedInventory> aggregatedInventories = new ArrayList<>();
         for (Article article : activeArticles) {
             int totalStock = getTotalStockByArticleInUnidad(article.getId(), unidadId);
-            if (totalStock > 0) {
                 AggregatedInventory aggregatedInventory = AggregatedInventory.builder()
                         .article(article)
                         .totalStock(totalStock)
                         .build();
                 aggregatedInventories.add(aggregatedInventory);
-            }
         }
 
         // Return the aggregated inventories for all active articles in the given Unidad

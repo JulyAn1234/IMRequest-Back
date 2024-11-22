@@ -28,6 +28,7 @@ public class RegisterUserDto {
     @JsonProperty("Permissions")
     private List<Integer> permissions;
 
+    @JsonProperty("isActive")
     private boolean isActive;
 
 }

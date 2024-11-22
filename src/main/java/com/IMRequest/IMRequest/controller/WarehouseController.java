@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
-@RequestMapping("/warehouse")
+@CrossOrigin
 @RestController
+@RequestMapping("/warehouse")
 public class WarehouseController {
 
     private final WarehouseService warehouseService;

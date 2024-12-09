@@ -28,4 +28,7 @@ public class Article {
     @JsonProperty("isActive")
     private boolean isActive;
 
+    @JsonProperty("isTool")
+    private boolean isTool;
+
 }

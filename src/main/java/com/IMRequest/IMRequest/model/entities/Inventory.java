@@ -30,4 +30,5 @@ public class Inventory {
     private String warehouseId;
     @JsonProperty("Stock")
     private int stock;
+
 }

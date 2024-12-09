@@ -64,6 +64,7 @@ public class ArticleService {
             article.setMeasure(updatedArticle.getMeasure());
             article.setDescription(updatedArticle.getDescription());
             article.setName(updatedArticle.getName());
+            article.setTool(updatedArticle.isTool());
 
             return articleRepository.save(article);
         });

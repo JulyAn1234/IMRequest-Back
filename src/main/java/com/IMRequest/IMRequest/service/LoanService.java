@@ -77,7 +77,7 @@ public class LoanService {
         for (LoanItem item : loan.getItems()) {
             if (item.isActive()) {
                 item.setActive(false);
-                updateInventoryForLoanItem(item, loan.getWarehouseId(), -item.getQuantity());
+                updateInventoryForLoanItem(item, loan.getWarehouseId(), item.getQuantity());
             }
         }
         // Set the loan as inactive
